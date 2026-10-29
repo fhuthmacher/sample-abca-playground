@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Porto: Portugal's Riverside Soul — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1600&q=80" alt="Colourful houses along the Ribeira waterfront on the Douro River in Porto, Portugal" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">City &nbsp;&middot;&nbsp; Portugal</p>
+      <h1 class="guide-hero__title">Porto:<br/>Portugal's riverside soul</h1>
+      <p class="guide-hero__meta">8 min read &nbsp;&middot;&nbsp; Three-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        Stacked steeply above the Douro River, Porto is a city of tiled fa&ccedil;ades, granite churches, and wrought-iron bridges &mdash; a place that wears its age with a little swagger. It gave Portugal its name and the world its most famous fortified wine, and it remains gloriously unpolished: laundry flutters from balconies, trams rattle up the hills, and the evening light turns the river gold.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why Porto?</h2>
+        <p>Porto's historic centre, including the riverside Ribeira district, is a UNESCO World Heritage Site, and its beauty comes from layers rather than grand set pieces. Baroque churches clad in blue-and-white azulejo tiles sit beside crumbling merchant houses, Art Nouveau caf&eacute;s, and bold contemporary architecture such as Rem Koolhaas's Casa da M&uacute;sica and &Aacute;lvaro Siza's Serralves Museum.</p>
+        <p>Across the river in Vila Nova de Gaia, the port wine lodges have aged and shipped the city's signature drink for centuries. Add a food culture built on generous, unfussy cooking, easy day trips to the terraced vineyards of the Douro Valley, and prices that still feel fair by western European standards, and Porto makes a strong case for a long weekend &mdash; or longer.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Porto is hilly and paved with slippery granite cobbles, so bring comfortable shoes with good grip. The metro runs from the airport to the centre in about 30 minutes; buy a rechargeable Andante card for metro, buses, and the Funicular dos Guindais. Walking across the upper deck of the Dom Lu&iacute;s I bridge is free and gives one of the best views in the city.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The landmarks</h2>
+        <p>Start at the Ribeira waterfront, where pastel houses tumble down to the quay and traditional rabelo boats, once used to carry wine barrels downriver, bob at their moorings. Above it rises the S&eacute; Cathedral, a fortress-like Romanesque church with a cloister lined in azulejos. A short climb away, S&atilde;o Bento station's entrance hall is covered with some 20,000 tiles depicting scenes from Portuguese history.</p>
+        <p>The Cl&eacute;rigos Tower, a baroque bell tower of 75 metres, offers a sweeping panorama over the city's rooftops. Nearby, the Livraria Lello bookshop draws crowds for its carved wooden staircase, and the Bolh&atilde;o market, reopened after a careful restoration, is the place to see locals shopping for fish, flowers, and cured meats.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Ribeira</h3>
+          <p class="city-card__desc">The riverside heart of old Porto, a maze of narrow alleys that opens onto a lively quay of caf&eacute;s and restaurants. Take a short &ldquo;six bridges&rdquo; river cruise from here for the classic view of the city.</p>
+          <span class="city-card__detail">Half-day stroll</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Dom Lu&iacute;s I Bridge</h3>
+          <p class="city-card__desc">The double-deck iron arch completed in 1886 links Porto with Vila Nova de Gaia. Cross the upper deck at sunset, then continue to the Serra do Pilar viewpoint for the most famous panorama in Porto.</p>
+          <span class="city-card__detail">Sunset walk</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Vila Nova de Gaia</h3>
+          <p class="city-card__desc">The south bank is home to historic port lodges such as Taylor's, Graham's, and Sandeman. Tours wind through cool cellars of oak barrels and finish with a tasting of tawny, ruby, and white ports.</p>
+          <span class="city-card__detail">Afternoon tasting</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Foz do Douro</h3>
+          <p class="city-card__desc">Where the river meets the Atlantic, a breezy seaside district of promenades, beaches, and seafood restaurants. Ride the vintage tram line 1 along the river to get there.</p>
+          <span class="city-card__detail">Relaxed evening</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://images.unsplash.com/photo-1569959220744-ff553533f492?w=1200&q=80" loading="lazy" alt="The Dom Luís I bridge lit up at dusk over the Douro River in Porto" />
+        <figcaption>The Dom Lu&iacute;s I bridge at dusk, its iron arch glowing above the Douro as the lights of Ribeira come on along the water.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>May, June, and September are the sweet spots: warm days (20&ndash;26&deg;C), long evenings, and fewer crowds than high summer. June brings the S&atilde;o Jo&atilde;o festival on the night of the 23rd, when the whole city takes to the streets with grilled sardines, fireworks, and plastic hammers. July and August are hot and busy but still pleasant thanks to Atlantic breezes.</p>
+        <p>Late September and early October is harvest season in the Douro Valley, the best time for a vineyard day trip. Winter is mild but rainy; it's the quietest and cheapest time to visit, and a fine excuse to linger in port lodges and tiled caf&eacute;s.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>Ribeira and the S&eacute; area put you in the middle of the postcard views, though the hills make for steep walks home. The streets around Aliados and Bolh&atilde;o are central, flatter, and well served by the metro. For a more local feel, try Cedofeita and the Rua Miguel Bombarda arts district, full of galleries and independent shops. Vila Nova de Gaia across the river offers the best views of Porto itself, often at lower prices.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>Porto is one of western Europe's better-value cities. Hostel beds start around &euro;20&ndash;30 per night; boutique guesthouses in the centre run &euro;80&ndash;150. A francesinha with a beer costs &euro;12&ndash;18, and a three-course dinner at a good tasca &euro;25&ndash;40 per person. Daily budget excluding accommodation: &euro;35&ndash;60 for modest spending; &euro;80&ndash;130 including port lodge tours, a river cruise, and a long seafood lunch.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>The city's signature dish is the francesinha: a towering sandwich of ham, sausage, and steak, covered in melted cheese and a spiced tomato-and-beer sauce, usually served with fries. Locals are nicknamed tripeiros (tripe eaters) after tripas &agrave; moda do Porto, a hearty bean-and-tripe stew. Salt cod (bacalhau) appears in countless forms, and the sandes de pernil from Casa Guedes &mdash; slow-roasted pork in a crusty roll &mdash; is a cult favourite.</p>
+        <p>For something sweet, pick up a pastel de nata still warm from the oven. And of course, there's port: start with a chilled white port and tonic on a riverside terrace, then work your way through aged tawnies at the lodges in Gaia. Don't overlook the crisp, slightly sparkling vinho verde from the Minho region just to the north &mdash; perfect with grilled fish.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Barcelona's sun-drenched plazas to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
