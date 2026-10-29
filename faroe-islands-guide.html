@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faroe Islands: Eighteen Islands in the North Atlantic — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Gasadalur_village_and_a_waterfall.jpg/1920px-Gasadalur_village_and_a_waterfall.jpg" alt="Múlafossur waterfall dropping from sea cliffs into the ocean below the village of Gásadalur, Faroe Islands" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">Islands &nbsp;&middot;&nbsp; North Atlantic</p>
+      <h1 class="guide-hero__title">Faroe Islands:<br/>eighteen islands at the edge of the Atlantic</h1>
+      <p class="guide-hero__meta">8 min read &nbsp;&middot;&nbsp; Five-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        Halfway between Iceland and Norway, eighteen steep green islands rise out of the North Atlantic. You get grass-roofed villages tucked into fjords, waterfalls that fall straight into the sea, and more sheep than people. The Faroe Islands are wild, often wet and very beautiful, and they are still one of the quietest corners of Europe.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why the Faroe Islands?</h2>
+        <p>The Faroes are a self-governing nation within the Kingdom of Denmark, home to around 54,000 people. They have their own language, their own flag and a culture shaped by Viking settlers more than a thousand years ago. The landscape is the main draw: basalt cliffs hundreds of metres high, narrow sounds between islands, and treeless valleys where the light changes by the minute. Nowhere on the islands is more than five kilometres from the sea.</p>
+        <p>Getting around is surprisingly easy. Undersea tunnels, bridges and ferries link most of the main islands. The Eysturoyartunnilin even has a lit roundabout on the seabed. Distances are short, so in a few days you can drive from the capital, Tórshavn, to remote villages at the far ends of the road network. Bring good boots and waterproofs, and expect the weather to change your plans at least once.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Rent a car at Vágar Airport. Buses run between the main towns, but a car is the only practical way to reach many trailheads and villages. Several popular hikes cross private farmland and charge a fee, which pays for path maintenance. Book these online in advance, especially Trælanípan and Kallur. Fog can close cliff paths and cancel helicopter or ferry trips at short notice, so keep a spare day in your plans.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The highlights</h2>
+        <p>On the island of Vágar, close to the airport, the Múlafossur waterfall drops from a green ledge into the ocean below the tiny village of Gásadalur. It is the most famous view in the Faroes. Nearby, the walk to Trælanípan ends at the edge of Sørvágsvatn, a lake that seems to hang above the sea because of a trick of perspective. To the north, Gjógv sits at the end of a winding mountain road beside a natural sea gorge that has served as a harbour for centuries.</p>
+        <p>Further out, the Kallur lighthouse on Kalsoy stands on a knife-edge ridge above sheer cliffs. The ferry crossing from Klaksvík is part of the adventure. In summer, boats sail to Mykines, the westernmost island, where thousands of puffins nest on the grassy slopes between May and August.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Gásadalur &amp; Múlafossur</h3>
+          <p class="city-card__desc">A handful of houses beneath towering peaks, with a waterfall that pours straight into the Atlantic. Until a tunnel opened in 2004, the village could only be reached on foot over the mountain or by boat.</p>
+          <span class="city-card__detail">Short walk</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Tórshavn</h3>
+          <p class="city-card__desc">One of the world's smallest capitals. The Tinganes peninsula holds red-painted, turf-roofed government buildings on the spot where a Viking parliament met over a thousand years ago. Cafés and craft shops line the old harbour.</p>
+          <span class="city-card__detail">Full day</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Kallur Lighthouse</h3>
+          <p class="city-card__desc">A lone white lighthouse on the northern tip of Kalsoy, reached by a short but exposed hike from the village of Trøllanes. The ridge views over the cliffs and the neighbouring islands are among the most dramatic in the North Atlantic.</p>
+          <span class="city-card__detail">Half-day hike</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Mykines</h3>
+          <p class="city-card__desc">The westernmost island, home to a dozen year-round residents and a large summer puffin colony. A footbridge leads to the Mykineshólmur lighthouse. Ferries depend on the sea, so plan this trip with flexibility.</p>
+          <span class="city-card__detail">Day trip</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tinganes%2C_T%C3%B3rshavn_2004.1.jpg/1280px-Tinganes%2C_T%C3%B3rshavn_2004.1.jpg" loading="lazy" alt="Red turf-roofed buildings on the rocky Tinganes peninsula in Tórshavn harbour" />
+        <figcaption>Tinganes in Tórshavn, where the turf-roofed government buildings sit on bare rock between two harbours. People have gathered on this spot to govern the islands since the Viking age.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>June through August is the main season. The days are very long (almost 20 hours of daylight around midsummer), puffins are on the cliffs, and the hiking paths and ferry routes are at their most reliable. Temperatures rarely climb above 13&ndash;15&deg;C even in high summer, so pack layers. Late July brings Ólavsøka, the national festival, when Tórshavn fills with rowing races, chain dancing and people in traditional dress.</p>
+        <p>Spring and autumn are quieter and cheaper, with dramatic skies and the chance of the northern lights from September onward. Winter is mild for the latitude thanks to the Gulf Stream, but it is dark, stormy and wet, and some hikes and ferry services close. It suits travellers who come for moody seascapes rather than long days on the trails.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>Tórshavn has the widest choice of hotels, guesthouses and restaurants, and it makes a good central base. Most of the main sights are within an hour's drive through the tunnel network. If you want something closer to the landscape, look at guesthouses and cottages in villages such as Gjógv, Sørvágur or Miðvágur, or at the traditional turf-roofed houses rented out by local families. Book accommodation and rental cars well ahead for summer, because capacity on the islands is limited.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>The Faroes are expensive, with prices similar to or higher than mainland Scandinavia. The local currency is the Faroese króna, which trades at par with the Danish krone, and cards are accepted almost everywhere. Guesthouse rooms start around DKK 900&ndash;1,200 per night, and hotels in Tórshavn run DKK 1,500&ndash;2,500. A café lunch costs DKK 150&ndash;250, and dinner at a good restaurant DKK 400&ndash;700 per person. Self-catering from the supermarket and picnics on the trail keep costs down.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>Faroese cooking is built on what the sea and the hills provide: lamb, fish, seabirds and very little else. The signature flavour is <em>ræst</em>, meat or fish that has been wind-fermented in slatted drying sheds called <em>hjallur</em>. It is pungent, prized locally and well worth tasting at least once. Fresh seafood is exceptional, from langoustines and scallops to cod and some of the finest salmon in the world, farmed in the cold fjords.</p>
+        <p>For a real local experience, book a <em>heimablídni</em>, or home hospitality. Families open their dining rooms to visitors and serve traditional meals in farmhouses around the islands. Tórshavn also has a small but ambitious restaurant scene with a focus on Nordic cooking, and Föroya Bjór, brewing in Gøta since 1888, makes a fine pint to end a long day on the cliffs.</p>
+      </div>
+
+      <p class="city-card__desc">Photos: <a href="https://commons.wikimedia.org/wiki/File:Gasadalur_village_and_a_waterfall.jpg">Rokaso</a>, CC BY-SA 4.0; <a href="https://commons.wikimedia.org/wiki/File:Tinganes,_T%C3%B3rshavn_2004.1.jpg">Erik Christensen</a>, CC BY-SA 3.0, via Wikimedia Commons.</p>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Barcelona's sun-drenched plazas to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
