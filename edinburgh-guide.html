@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edinburgh: Scotland's Storied Capital — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?w=1600&q=80" alt="Edinburgh Castle rising above its volcanic rock under a blue sky" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">City &nbsp;&middot;&nbsp; Scotland</p>
+      <h1 class="guide-hero__title">Edinburgh:<br/>Scotland's storied capital</h1>
+      <p class="guide-hero__meta">8 min read &nbsp;&middot;&nbsp; Three-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        A city built on extinct volcanoes, where a medieval castle crowns a crag of black rock and Georgian terraces march in elegant lines below &mdash; Edinburgh is dramatic in a way few capitals manage. Wynds and closes tumble off the Royal Mile, an extinct volcano rises in the middle of town, and every August the whole city turns into the largest arts festival on earth.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why Edinburgh?</h2>
+        <p>Edinburgh is really two cities facing each other across a valley. The Old Town is a medieval spine of tall tenements and narrow alleys running from the castle down to the Palace of Holyroodhouse. The New Town, laid out in the late 18th century, is a calm grid of honey-coloured sandstone squares and crescents. Together they form a UNESCO World Heritage Site, and the contrast between the two &mdash; the crooked and the classical &mdash; is the city's defining charm.</p>
+        <p>It is also a city of ideas. Edinburgh was the cradle of the Scottish Enlightenment, home to David Hume and Adam Smith, and later the inspiration for writers from Robert Louis Stevenson to J.K. Rowling. Add world-class free museums, a lively whisky and dining scene, and wild green space on the doorstep, and Edinburgh rewards both a quick weekend and a slow week.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Edinburgh is very walkable, but it is hilly and the cobbles are uneven &mdash; bring comfortable shoes. Waverley Station sits right between the Old and New Towns. From the airport, the Airlink 100 bus and the tram both reach the city centre in about 30 minutes. Pack a waterproof layer whatever the season: the weather can change several times in an afternoon.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The landmarks</h2>
+        <p>Edinburgh Castle has stood on Castle Rock for more than 900 years. Inside you'll find the Honours of Scotland (the crown jewels), the Stone of Destiny, and tiny St Margaret's Chapel, the oldest building in the city. The one o'clock gun still fires every day except Sunday. From the castle gates, the Royal Mile runs downhill past St Giles' Cathedral and dozens of hidden closes to Holyroodhouse, the monarch's official residence in Scotland.</p>
+        <p>For the best views, climb Arthur's Seat, the 251-metre summit of an ancient volcano in Holyrood Park, or take the shorter walk up Calton Hill at sunset for the classic view along Princes Street to the castle. The National Museum of Scotland and the Scottish National Gallery are both free and well worth a rainy afternoon.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Edinburgh Castle</h3>
+          <p class="city-card__desc">The fortress on Castle Rock, home to the Scottish crown jewels and the Great Hall. Book timed tickets online and arrive at opening to see the Crown Room before the queues build.</p>
+          <span class="city-card__detail">Half-day visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">The Royal Mile &amp; Closes</h3>
+          <p class="city-card__desc">The Old Town's main street, lined with tenements, kirks, and whisky shops. Duck into the narrow closes on either side, such as Advocate's Close and Mary King's Close, for glimpses of the medieval city underneath.</p>
+          <span class="city-card__detail">Leisurely morning</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Arthur's Seat</h3>
+          <p class="city-card__desc">An extinct volcano in Holyrood Park, a short walk from the Royal Mile. The climb takes about 45 minutes and rewards you with views over the city, the Firth of Forth, and the hills of Fife.</p>
+          <span class="city-card__detail">Morning hike</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Dean Village &amp; Stockbridge</h3>
+          <p class="city-card__desc">A former milling village on the Water of Leith, only minutes from the West End yet almost rural. Follow the riverside path to Stockbridge for independent shops, cafés, and its Sunday market.</p>
+          <span class="city-card__detail">Quiet afternoon</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=1200&q=80" loading="lazy" alt="Edinburgh skyline at golden hour with the Balmoral clock tower and church spires" />
+        <figcaption>The view from Calton Hill at golden hour: the Balmoral clock tower, the spires of the Old Town, and rooftops stretching west towards the castle.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>May through September gives the longest days (in June it stays light until nearly 11pm) and the mildest weather, typically 14&ndash;19&deg;C. August is festival month, when the Edinburgh International Festival, the Fringe, and the Royal Edinburgh Military Tattoo fill every venue. It is thrilling, but book accommodation months ahead and expect peak prices.</p>
+        <p>Winter is cold and dark but atmospheric, with Christmas markets on Princes Street Gardens and Hogmanay, one of the world's great New Year's Eve celebrations. Spring and autumn are quieter shoulder seasons, with good-value hotels and fewer queues at the castle.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>Staying in the Old Town puts you among the sights, though the Royal Mile can be noisy late at night. The New Town offers elegant Georgian townhouse hotels and is close to Princes Street and Waverley Station. For a more local feel, try Stockbridge, with its village atmosphere and good restaurants, or Leith, the old port to the north, known for its waterfront dining and easy tram link to the centre.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>Edinburgh is mid-to-high priced by UK standards, especially in August. Hostel beds start around &pound;25&ndash;40 per night outside the festival; comfortable central hotels run &pound;120&ndash;220. A pub lunch costs &pound;14&ndash;20, and dinner at a good Scottish restaurant &pound;35&ndash;60 per person. Many of the major museums and galleries are free, which helps a lot. Daily budget excluding accommodation: &pound;45&ndash;70 for modest spending; &pound;90&ndash;150 with castle entry, a whisky tasting, and dinners out.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>Scottish cooking is built on outstanding produce: Highland beef and lamb, wild venison, langoustines, and some of the best salmon in the world. Try haggis, neeps and tatties at least once (vegetarian versions are widely available), a bowl of Cullen skink (a smoked haddock and potato soup), and cranachan, a dessert of raspberries, cream, honey, toasted oats, and whisky. Leith has several highly regarded restaurants, and the city's café culture is thriving.</p>
+        <p>Then there's whisky. Specialist bars around the Old Town and Leith pour hundreds of single malts, and the Scotch Whisky Experience by the castle is a gentle introduction to the regions. For something more local, look for gin from one of the city's small distilleries, or a pint of craft beer from an Edinburgh brewery in a traditional wood-panelled pub.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Barcelona's sun-drenched plazas to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
