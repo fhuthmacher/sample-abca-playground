@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hallstatt: Austria's Lakeside Salt Village — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/1_hallstatt_austria.jpg/1920px-1_hallstatt_austria.jpg" alt="Hallstatt village and church spire reflected in the Hallst&auml;ttersee, Austria" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">Village &nbsp;&middot;&nbsp; Austria</p>
+      <h1 class="guide-hero__title">Hallstatt:<br/>salt, lake, and mountain</h1>
+      <p class="guide-hero__meta">6 min read &nbsp;&middot;&nbsp; Two-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        Wedged between the steep flank of the Dachstein massif and the dark, glassy water of the Hallst&auml;ttersee, Hallstatt is a village of fewer than 800 people with seven thousand years of history beneath its feet. Pastel houses climb the slope in tiers, a slender church spire rises above the shoreline, and the oldest salt mine in the world still runs deep inside the mountain behind it.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why Hallstatt?</h2>
+        <p>Few places in Europe pack so much into so little space. Salt has been mined here since prehistory &mdash; so long that archaeologists named an entire era of the European Iron Age, the Hallstatt culture, after the finds made in the high valley above the village. That wealth built the village you see today: wooden balconies hung with geraniums, a lakeside market square, and a Catholic and a Protestant church standing a few hundred metres apart.</p>
+        <p>The setting is the real draw. Hallstatt sits at the heart of the Hallstatt&ndash;Dachstein/Salzkammergut UNESCO World Heritage cultural landscape, and the lake, the mountains, and the ice caves of the Dachstein make it a base for walking, boating, and some of the most dramatic viewpoints in the Alps.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Most visitors arrive by tour bus between 10am and 4pm. Stay overnight, or arrive early by train: Hallstatt station is on the far shore, and a small ferry timed to meet the trains carries you across the lake to the village &mdash; the best first view you can get.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The village</h2>
+        <p>Hallstatt is small enough to walk end to end in twenty minutes. The Marktplatz, with its fountain and painted fa&ccedil;ades, is the centre of village life. From here, narrow lanes and staircases climb to the Catholic parish church, while the Seestra&szlig;e follows the shoreline past boathouses and caf&eacute;s. Space is so tight that houses are built into the rock and the main road runs through a tunnel behind the village. In the southern quarter, Lahn, you will find the funicular to the salt mine and a quieter stretch of lakefront.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Salzwelten Salt Mine</h3>
+          <p class="city-card__desc">Ride the funicular up the mountain, then descend into the world's oldest salt mine on long wooden miners' slides. The tour passes an underground salt lake and tells the story of 7,000 years of mining.</p>
+          <span class="city-card__detail">Half-day visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Skywalk &ldquo;Welterbeblick&rdquo;</h3>
+          <p class="city-card__desc">A viewing platform jutting out 350 metres above the village at the top of the funicular. On a clear day you look straight down onto the rooftops, the church spire, and the length of the lake.</p>
+          <span class="city-card__detail">One-hour stop</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Beinhaus (Charnel House)</h3>
+          <p class="city-card__desc">Beside the Catholic church, a small chapel holds more than 600 painted skulls. With so little room for graves, bones were exhumed after a few years, and many were decorated with names, dates, and garlands of flowers.</p>
+          <span class="city-card__detail">Short visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Dachstein Ice Caves</h3>
+          <p class="city-card__desc">A short bus ride away in Obertraun, a cable car climbs to the Giant Ice Cave and the Mammoth Cave. Higher still, the Five Fingers platform hangs over a sheer drop with views across the Salzkammergut.</p>
+          <span class="city-card__detail">Full-day excursion</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Blue_Hallstatt_%28204466021%29.jpeg/1280px-Blue_Hallstatt_%28204466021%29.jpeg" loading="lazy" alt="Snow-covered mountains above the Hallst&auml;ttersee and Hallstatt's lakeside houses at dusk" />
+        <figcaption>Hallstatt in winter &mdash; when the crowds thin out, snow settles on the rooftops, and the lake turns a deep, still blue.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>May, June, September, and early October bring mild weather, open mountain lifts, and fewer crowds than high summer. July and August are warm (20&ndash;27&deg;C) and the best time for swimming and boating, but the village is at its busiest. Winter is quiet and atmospheric: snow on the roofs, Christmas markets in December, and an easy hop to the ski slopes of Krippenstein. Note that the salt mine and some lifts close or run reduced hours between November and March.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>Rooms in Hallstatt itself are few and book out months ahead in summer. The handful of lakeside hotels and family-run guesthouses offer balconies over the water and the village to yourself after the day visitors leave. Obertraun, at the eastern end of the lake, is quieter, cheaper, and close to the Dachstein cable car. Bad Goisern and Bad Ischl, a short train ride north, have more choice and make good bases for exploring the wider Salzkammergut.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>Hallstatt is pricier than most Austrian towns. Guesthouse rooms start at about &euro;100&ndash;150 per night; lakeside hotels &euro;200&ndash;350 in summer. A salt mine ticket including the funicular is around &euro;45. A main course at a village restaurant costs &euro;18&ndash;30. Daily budget excluding accommodation: &euro;60&ndash;100, more if you add the Dachstein cable car and caves.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>The lake sets the menu. Look for Reinanke (whitefish) and Saibling (char), caught in the Hallst&auml;ttersee and served grilled, smoked, or fried in butter with parsley potatoes. Several lakeside restaurants have terraces right on the water. Hearty Alpine dishes &mdash; K&auml;sesp&auml;tzle, Schweinsbraten, and Kaiserschmarrn &mdash; fill the menus on colder days.</p>
+        <p>Salt is the obvious souvenir: shops on the Marktplatz sell local mountain salt mixed with herbs and spices. For an afternoon break, do as the Austrians do and order coffee with a slice of Apfelstrudel or a Linzer torte at a lakeside caf&eacute;.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Vienna's imperial boulevards to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
