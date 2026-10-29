@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reykjavík: Iceland's Small Capital at the Edge of the Arctic — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://images.unsplash.com/photo-1529963183134-61a90db47eaf?w=1600&q=80" alt="Green northern lights over ice and snow in Iceland" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">City &nbsp;&middot;&nbsp; Iceland</p>
+      <h1 class="guide-hero__title">Reykjav&iacute;k:<br/>a small capital at the edge of the Arctic</h1>
+      <p class="guide-hero__meta">8 min read &nbsp;&middot;&nbsp; Three-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        The world's northernmost capital is barely a city at all &mdash; a cluster of corrugated-iron houses painted red, yellow, and sky blue, gathered around a harbour beneath snow-capped Mount Esja. Yet Reykjav&iacute;k punches far above its size: geothermal pools on every corner, a music and design scene out of all proportion to its population, and some of the most dramatic landscapes on Earth less than an hour's drive away.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why Reykjav&iacute;k?</h2>
+        <p>Home to around 140,000 people, Reykjav&iacute;k (&ldquo;Smoky Bay&rdquo;) takes its name from the steam that early Norse settlers saw rising from its hot springs in the 9th century. That same geothermal energy now heats almost every building in the city and fills its public swimming pools, which serve as Iceland's true social centres &mdash; places where locals soak in the hot pots and debate politics whatever the weather.</p>
+        <p>The city makes an ideal base for exploring Iceland. Within a day trip lie erupting volcanic landscapes, the tectonic rift of &THORN;ingvellir, thundering waterfalls, and black-sand beaches. And when you return in the evening, there is a surprisingly cosmopolitan city waiting: excellent seafood restaurants, intimate concert venues, and in winter, the chance of seeing the northern lights from the shoreline.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Keflav&iacute;k International Airport is about 50 km from the city; the Flybus coach meets every arrival and takes around 45 minutes. The centre itself is compact and walkable &mdash; from Hallgr&iacute;mskirkja down to the Old Harbour takes 15 minutes. Weather changes fast, so pack a waterproof shell and warm layers even in summer, and check road conditions at umferdin.is before any drive.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The landmarks</h2>
+        <p>Hallgr&iacute;mskirkja dominates the skyline: a soaring concrete church whose stepped fa&ccedil;ade was inspired by the basalt columns formed when lava cools. Take the lift to the top of the 74.5-metre tower for a view over the city's colourful rooftops to the mountains and the sea. From its steps, Sk&oacute;lav&ouml;r&eth;ust&iacute;gur &mdash; its pavement painted in rainbow stripes &mdash; leads downhill past galleries and wool shops toward the centre.</p>
+        <p>On the waterfront, Harpa concert hall glitters with a fa&ccedil;ade of geometric glass panels that catch the shifting Arctic light. A short walk east along the shore brings you to the Sun Voyager, a stainless-steel sculpture of a Viking-style ship facing out across the bay toward Mount Esja &mdash; at its most striking at sunset.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Hallgr&iacute;mskirkja</h3>
+          <p class="city-card__desc">Iceland's largest church and the city's defining landmark. The bright, austere interior houses a huge pipe organ, and the tower's viewing platform is the best way to get your bearings on the first day.</p>
+          <span class="city-card__detail">One-hour visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Old Harbour &amp; Grandi</h3>
+          <p class="city-card__desc">Former fishing warehouses now home to seafood shacks, whale-watching departures, the Saga Museum, and the Reykjav&iacute;k Maritime Museum. The Grandi food hall is a good stop for lunch.</p>
+          <span class="city-card__detail">Leisurely morning</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Sundh&ouml;llin &amp; the city pools</h3>
+          <p class="city-card__desc">Reykjav&iacute;k's oldest public pool, with a 1937 indoor hall and outdoor hot tubs. Shower thoroughly without a swimsuit before entering &mdash; it is the strict and non-negotiable local custom.</p>
+          <span class="city-card__detail">Evening soak</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">The Golden Circle</h3>
+          <p class="city-card__desc">The classic day loop from the city: &THORN;ingvellir National Park, where the North American and Eurasian plates pull apart; the erupting Strokkur geyser; and the two-tiered Gullfoss waterfall.</p>
+          <span class="city-card__detail">Full-day trip</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1200&q=80" loading="lazy" alt="Jagged Vestrahorn mountain rising behind black-sand dunes in southeast Iceland" />
+        <figcaption>Further along the Ring Road, Vestrahorn rises above the black sands of Stokksnes &mdash; a reminder that Reykjav&iacute;k is the gateway to some of Europe's wildest landscapes.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>June through August brings the midnight sun, with nearly 24 hours of daylight, mild temperatures (10&ndash;15&deg;C), open highland roads, and puffins nesting on islands just off the harbour. It is also the busiest and most expensive season. In June, festivals and long, bright evenings give the city a joyful energy.</p>
+        <p>September through March is northern-lights season. Days are short &mdash; around four hours of daylight in December &mdash; but dark skies offer the best chance of aurora, and the city glows with candlelit caf&eacute;s and the New Year's Eve fireworks, which locals launch en masse across every neighbourhood. Shoulder months like September and April balance reasonable daylight with fewer crowds.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>Base yourself in 101 Reykjav&iacute;k, the central postcode around Laugavegur, the main shopping street, and the lanes beneath Hallgr&iacute;mskirkja. Everything is walkable, and most day-tour companies offer hotel pickups from bus stops nearby. The Old Harbour area offers modern hotels with sea views, while the quieter residential streets of Vesturb&aelig;r, west of the centre, have guesthouses close to the excellent Vesturb&aelig;jarlaug pool.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>Reykjav&iacute;k is one of Europe's most expensive cities. Hostel dorms start around ISK 6,000&ndash;9,000 (&euro;40&ndash;60) per night; mid-range hotels run ISK 25,000&ndash;40,000 (&euro;170&ndash;270). A main course at a mid-range restaurant costs ISK 4,000&ndash;6,000, and a pint of beer around ISK 1,500. Save by buying groceries at Bon&uacute;s or Kr&oacute;nan, drinking the excellent tap water, and using happy hours. Card payments are accepted almost everywhere &mdash; you rarely need cash.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>Icelandic cooking is built on the sea and the land: Arctic char, cod, and langoustine from the cold North Atlantic, and lamb that grazes freely on wild mountain herbs all summer. Try plokkfiskur, a comforting mash of fish and potato, or kj&ouml;ts&uacute;pa, a hearty lamb soup. Skyr, the thick cultured dairy that Icelanders have eaten for over a thousand years, appears in everything from breakfast bowls to desserts.</p>
+        <p>For the city's most famous snack, queue at B&aelig;jarins Beztu Pylsur, a harbourside hot-dog stand open since 1937 &mdash; order &ldquo;eina me&eth; &ouml;llu&rdquo; (one with everything) for crispy and raw onions, sweet mustard, ketchup, and remoulade. Adventurous eaters can sample h&aacute;karl, fermented shark, chased with a shot of BrennivBr&eacute;nniv&iacute;niacute;n schnapps; most visitors try it once.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Barcelona's sun-drenched plazas to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
