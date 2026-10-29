@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prague: Czechia's City of a Hundred Spires — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=1600&q=80" alt="Charles Bridge and the Vltava river with Prague Castle beyond, Prague, Czechia" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">City &nbsp;&middot;&nbsp; Czechia</p>
+      <h1 class="guide-hero__title">Prague:<br/>the city of a hundred spires</h1>
+      <p class="guide-hero__meta">8 min read &nbsp;&middot;&nbsp; Four-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        Gothic towers, Baroque domes, Art Nouveau fa&ccedil;ades and Cubist lampposts all share the same few square kilometres along the Vltava. Prague came through the twentieth century with its old centre almost untouched, and walking it is like reading a thousand years of European architecture in one afternoon. Come early in the morning and stay late, because the city is at its best when the crowds have gone.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why Prague?</h2>
+        <p>Few capitals are as compact or as photogenic. From the Old Town Square, where the astronomical clock has marked the hours since 1410, it is a short walk across the Charles Bridge to Mal&aacute; Strana, the &ldquo;Lesser Town&rdquo; of palaces and walled gardens, and then up the hill to Prague Castle, the largest ancient castle complex in the world. Every stretch of the route has another tower, another courtyard, another view across the red rooftops.</p>
+        <p>Prague is also a city of writers, composers and dissidents. Kafka was born here, Dvo&#345;&aacute;k and Smetana wrote much of their music here, and V&aacute;clav Havel's Velvet Revolution began in the streets around Wenceslas Square in 1989. Its culture is lively, wry and unpretentious: puppet theatres, jazz cellars, an excellent classical music scene and, of course, the best beer in the world at prices that still surprise visitors.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Cross the Charles Bridge before 7am or after 10pm to have its statues and views largely to yourself. Czechia uses the koruna (CZK), not the euro: pay by card where you can, avoid street exchange booths, and always choose to be charged in korunas when a card terminal offers a currency conversion.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The neighbourhoods</h2>
+        <p>Star&eacute; M&#283;sto (Old Town) is the medieval heart: a maze of lanes leading to the Old Town Square and the twin spires of the T&yacute;n Church. Next to it, Josefov holds the old Jewish Quarter, with six synagogues and the deeply affecting Old Jewish Cemetery. Across the river, Mal&aacute; Strana sits below the castle hill, all Baroque palaces, embassies and quiet gardens. Nov&eacute; M&#283;sto (New Town), founded in 1348 and &ldquo;new&rdquo; only by Prague standards, runs along Wenceslas Square. For local life, head to Vinohrady and &#381;i&#382;kov, where leafy squares, wine bars and old-school pubs fill streets that few tour groups ever reach.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Prague Castle</h3>
+          <p class="city-card__desc">A thousand years of Czech history on one hilltop: St. Vitus Cathedral with its Mucha stained glass, the Old Royal Palace, and Golden Lane's tiny painted houses, one of which Kafka once used as a writing room.</p>
+          <span class="city-card__detail">Half-day visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Charles Bridge</h3>
+          <p class="city-card__desc">Built in the 14th century and lined with thirty Baroque statues, this pedestrian bridge links the Old Town to Mal&aacute; Strana. Climb the Old Town Bridge Tower for the classic view along the river toward the castle.</p>
+          <span class="city-card__detail">Early-morning walk</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Old Town Square</h3>
+          <p class="city-card__desc">Gothic, Baroque and Rococo fa&ccedil;ades surround the city's grandest square. Watch the astronomical clock's procession of apostles on the hour, then climb the Old Town Hall tower to look out over the T&yacute;n Church's spires.</p>
+          <span class="city-card__detail">Two-hour visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Vy&scaron;ehrad</h3>
+          <p class="city-card__desc">A cliff-top fortress south of the centre with ramparts above the Vltava, the neo-Gothic Basilica of St. Peter and St. Paul, and the cemetery where Dvo&#345;&aacute;k and Mucha are buried. It is calm, green, and free to wander.</p>
+          <span class="city-card__detail">Afternoon excursion</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=1200&q=80" loading="lazy" alt="Green dome of St. Nicholas Church rising above the red rooftops of Malá Strana, with St. Vitus Cathedral in the distance" />
+        <figcaption>The copper dome of St. Nicholas Church rising over the red rooftops of Mal&aacute; Strana: Prague at its most Baroque.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>April to June and September to October bring mild weather (15&ndash;22&deg;C), blossom or autumn colour on Pet&#345;&iacute;n Hill, and slightly thinner crowds. The Prague Spring music festival fills concert halls from mid-May to early June. July and August are warm and very busy. Winter is cold, often below freezing, but atmospheric: the Christmas markets on the Old Town and Wenceslas squares run from late November, and a snowy Charles Bridge at dusk is unforgettable.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>The Old Town puts the main sights on your doorstep, but it can be noisy and pricey. Mal&aacute; Strana is quieter and more romantic, with boutique hotels in converted Baroque townhouses below the castle. For better value and a more local feel, stay in Vinohrady or Karl&iacute;n: both are a few tram stops from the centre and full of caf&eacute;s, bistros and parks. Prague's trams and metro are cheap, frequent and easy to use, so staying a little out of the centre costs you very little time.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>Prague is still good value for a European capital, though prices in the historic centre have risen. Hostels start at around 500&ndash;800 CZK (&euro;20&ndash;32) per night; mid-range hotels run 2,500&ndash;4,500 CZK (&euro;100&ndash;180). A half-litre of draught beer costs 60&ndash;90 CZK in a neighbourhood pub, and a hearty lunch menu (poledn&iacute; menu) 180&ndash;260 CZK. A 72-hour public transport pass costs 330 CZK. Daily budget excluding accommodation: &euro;40&ndash;70 for comfortable sightseeing.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>Czech cooking is hearty and built for cold winters. Try sv&iacute;&ccaron;kov&aacute; (beef sirloin in a creamy root-vegetable sauce with bread dumplings and cranberries), pe&ccaron;en&aacute; kachna (roast duck with red cabbage), and gul&aacute;&scaron; served with a beer. Snack on chleb&iacute;&ccaron;ky, the colourful open sandwiches sold in delis, and skip the trdeln&iacute;k sold on every tourist street: it is a recent import, not a Czech tradition.</p>
+        <p>Beer is central to life here. Czechs drink more of it per person than anyone else in the world, and the pilsner style was invented an hour west of Prague, in Plze&#328;. Order a tank&oacute;vka (unpasteurised tank beer) in a traditional pub such as U Zlat&eacute;ho Tygra or U Flek&#367;, or explore the city's growing craft scene. For something different, South Moravian wines are excellent, and the wine bars of Vinohrady pour them by the glass.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Vienna's coffeehouses to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
