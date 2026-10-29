@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lisbon: Portugal's City of Seven Hills — Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #f5f0e8;
+      --cream:   #faf8f4;
+      --stone:   #e8e0d0;
+      --ink:     #1a1714;
+      --ash:     #6b6560;
+      --teal:    #2a7a6f;
+      --teal-lt: #d5ecea;
+      --coral:   #c9624a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w: 800px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(250,248,244,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+    .nav__back {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .nav__back:hover { opacity: 0.7; }
+
+    /* ── Hero ── */
+    .guide-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .guide-hero__img {
+      height: 100%;
+      object-fit: cover;
+    }
+    .guide-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+    }
+    .guide-hero__content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 40px;
+      max-width: 860px;
+    }
+    .guide-hero__cat {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .guide-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .guide-hero__meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ── Article ── */
+    .guide-body {
+      padding: 64px 0 96px;
+    }
+    .guide-body .container {
+      max-width: 720px;
+    }
+
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ash);
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .guide-section {
+      margin-bottom: 48px;
+    }
+    .guide-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .guide-section p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #3d3830;
+      margin-bottom: 16px;
+    }
+
+    .guide-tip {
+      background: var(--teal-lt);
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      margin: 32px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide-tip__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .guide-tip p {
+      font-size: 0.9rem;
+      color: #2a5750;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .guide-city {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+    @media (max-width: 600px) {
+      .guide-city { grid-template-columns: 1fr; }
+    }
+
+    .city-card {
+      background: var(--sand);
+      padding: 24px;
+    }
+    .city-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .city-card__desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .city-card__detail {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .guide-img-block {
+      margin: 40px 0;
+      overflow: hidden;
+    }
+    .guide-img-block img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+    }
+    .guide-img-block figcaption {
+      font-size: 0.75rem;
+      color: var(--ash);
+      padding: 10px 0 0;
+      font-style: italic;
+    }
+
+    /* ── Back CTA ── */
+    .guide-back-cta {
+      padding: 64px 0;
+      background: var(--sand);
+      text-align: center;
+    }
+    .guide-back-cta h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .guide-back-cta p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: var(--teal); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Playground</a>
+    <a href="index.html#destinations" class="nav__back">&larr; All destinations</a>
+  </nav>
+
+  <div class="guide-hero">
+    <img class="guide-hero__img" src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=1600&q=80" alt="A yellow tram on a street in Lisbon's Baixa district" />
+    <div class="guide-hero__overlay"></div>
+    <div class="guide-hero__content">
+      <p class="guide-hero__cat">City &nbsp;&middot;&nbsp; Portugal</p>
+      <h1 class="guide-hero__title">Lisbon:<br/>the city of seven hills</h1>
+      <p class="guide-hero__meta">8 min read &nbsp;&middot;&nbsp; Four-day itinerary</p>
+    </div>
+  </div>
+
+  <section class="guide-body">
+    <div class="container">
+
+      <p class="guide-intro">
+        A city of steep cobbled lanes, tiled fa&ccedil;ades, and light that bounces off the Tagus. Lisbon is a capital that never quite lost its sense of the sea &mdash; old trams rattle up its hills, fado drifts out of tiny taverns after dark, and every climb ends at a miradouro with the river spread out below.
+      </p>
+
+      <div class="guide-section">
+        <h2>Why Lisbon?</h2>
+        <p>Lisbon is among Europe's oldest cities, and much of it was rebuilt after the great earthquake of 1755. The result is a mix: the orderly grid of the Baixa, laid out by the Marqu&ecirc;s de Pombal, sits between hills that kept their older, tangled street plans. Alfama, the Moorish quarter, survived mostly intact &mdash; a maze of alleys, stairways, and laundry-strung balconies running down from the S&atilde;o Jorge castle to the river.</p>
+        <p>The city's character comes from its contrasts. Bel&eacute;m's Manueline monuments recall the Age of Discovery, while LX Factory and the riverside MAAT museum show a younger, creative Lisbon. Azulejo tiles cover everything from church walls to apartment blocks. Prices are still gentle by western European standards, and the Atlantic beaches of Cascais and the palaces of Sintra are less than an hour away by train.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Practical tip</p>
+        <p>Tram 28 is famous, which means it is also packed and a favourite of pickpockets. Board at the Martim Moniz terminus early in the morning to get a seat, or ride the quieter Tram 12, which loops through Alfama. A Viva Viagem card loaded with &ldquo;zapping&rdquo; credit is much cheaper than paying the driver on board.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>The neighbourhoods</h2>
+        <p>The Baixa is the flat downtown, running from Rossio square to the grand riverside Pra&ccedil;a do Com&eacute;rcio. Above it to the west, the Chiado holds historic caf&eacute;s, bookshops, and theatres, and leads up to the Bairro Alto &mdash; quiet by day, crowded with bars spilling onto the street by night. To the east, Alfama and Mouraria are the oldest quarters, home to fado houses and the castle. Pr&iacute;ncipe Real is the leafy, upmarket area of concept stores and garden squares, and Bel&eacute;m, a short tram ride west along the river, is where you'll find the monuments to Portugal's maritime past.</p>
+      </div>
+
+      <div class="guide-city">
+        <div class="city-card">
+          <h3 class="city-card__name">Jer&oacute;nimos Monastery</h3>
+          <p class="city-card__desc">A UNESCO-listed masterpiece of Manueline architecture, funded by the spice trade and carved with ropes, sea creatures, and armillary spheres. Vasco da Gama is buried here. Combine it with the nearby Bel&eacute;m Tower and the Monument to the Discoveries.</p>
+          <span class="city-card__detail">Half-day visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Castelo de S&atilde;o Jorge</h3>
+          <p class="city-card__desc">The Moorish castle on Lisbon's highest hill has ramparts to walk and the best panoramic view over the city's red rooftops and the river. Go late in the afternoon and stay for sunset, then walk down through Alfama.</p>
+          <span class="city-card__detail">Afternoon visit</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Museu Nacional do Azulejo</h3>
+          <p class="city-card__desc">Housed in a former convent, this museum traces five centuries of Portuguese tile-making, from Moorish geometric patterns to a 23-metre panorama of pre-earthquake Lisbon. The gilded Madre de Deus church inside is a highlight.</p>
+          <span class="city-card__detail">Morning excursion</span>
+        </div>
+        <div class="city-card">
+          <h3 class="city-card__name">Sintra</h3>
+          <p class="city-card__desc">A day trip into wooded hills scattered with romantic palaces: the colourful Pena Palace, the mysterious initiation well of Quinta da Regaleira, and the Moorish Castle ruins. Trains run from Rossio station in about 40 minutes.</p>
+          <span class="city-card__detail">Full-day trip</span>
+        </div>
+      </div>
+
+      <figure class="guide-img-block">
+        <img src="https://images.unsplash.com/photo-1536663815808-535e2280d2c2?w=1200&q=80" loading="lazy" alt="Terracotta rooftops of Alfama with a white church and the Tagus river beyond" />
+        <figcaption>Alfama's rooftops tumble toward the Tagus &mdash; the view from almost any miradouro in Lisbon's oldest quarter.</figcaption>
+      </figure>
+
+      <div class="guide-section">
+        <h2>When to go</h2>
+        <p>March to May and September to October are ideal: warm, sunny days (18&ndash;26&deg;C) without peak-summer crowds. June brings the Santos Populares festivals, when the old quarters fill with grilled sardines, paper garlands, and street parties &mdash; the Feast of Santo Ant&oacute;nio on 12&ndash;13 June is the liveliest night of the year. July and August are hot and busy but good for beach days on the coast. Winters are mild and wetter, with quieter streets and lower prices.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Where to stay</h2>
+        <p>The Baixa and Chiado are the most practical bases: flat, central, and well connected by metro, with everything from historic hotels to stylish guesthouses. Alfama offers atmosphere and views, though the hills and stairs are steep with luggage. Pr&iacute;ncipe Real and Santos suit travellers who want a quieter, more residential feel with good restaurants nearby. Avoid booking directly on Bairro Alto's main bar streets unless you plan to stay out late yourself.</p>
+      </div>
+
+      <div class="guide-tip">
+        <p class="guide-tip__label">Budget guide</p>
+        <p>Lisbon remains one of western Europe's more affordable capitals. Hostels start at &euro;20&ndash;35 per night; mid-range hotels in the centre run &euro;100&ndash;180. A prato do dia (dish of the day) at a neighbourhood tasca costs &euro;9&ndash;14, and an espresso with a past&eacute;l de nata rarely tops &euro;3. Daily budget excluding accommodation: &euro;40&ndash;70 for comfortable sightseeing; &euro;90&ndash;140 including a fado dinner and day trips.</p>
+      </div>
+
+      <div class="guide-section">
+        <h2>Food &amp; drink</h2>
+        <p>Lisbon's food is built around the sea. Grilled sardines, octopus, and bacalhau (salt cod) &mdash; said to be prepared in 365 different ways &mdash; appear on almost every menu. The bifana, a garlicky pork sandwich, is the classic quick lunch. And no visit is complete without a past&eacute;l de nata, ideally warm from the oven at Past&eacute;is de Bel&eacute;m or Manteigaria, dusted with cinnamon. The Time Out Market at Cais do Sodr&eacute; gathers many of the city's best chefs under one roof.</p>
+        <p>Portuguese wine is excellent value: try vinho verde from the north, reds from the Douro and Alentejo, and a glass of port to finish. Locals drink ginjinha, a sour-cherry liqueur served in tiny cups at hole-in-the-wall bars around Rossio. For the full experience, book dinner at a fado house in Alfama or Mouraria, and keep quiet when the singing starts.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-back-cta">
+    <div class="container">
+      <h3>Discover more guides</h3>
+      <p>From Barcelona's Modernista avenues to Norway's deep fjords — there's always another journey waiting.</p>
+      <a href="index.html#guides" class="btn">Browse all guides</a>
+    </div>
+  </div>
+
+</body>
+</html>
